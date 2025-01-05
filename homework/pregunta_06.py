@@ -26,3 +26,33 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+
+    dicc = {}
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")
+            diccionario_texto = columnas[4]
+
+            # Dividir los pares de clave-valor por la coma
+            pares = diccionario_texto.split(",")  
+            for par in pares:
+                try:
+                    clave, valor = par.split(":")
+                    valor = int(valor)  # Convertir el valor a entero
+
+                    if clave not in dicc:
+                        dicc[clave] = []
+
+                    dicc[clave].append(valor)
+                except ValueError:
+                    # Manejar posibles errores de formato
+                    print(f"Error procesando el par: {par}")
+
+    # Generar la lista de resultados
+    resultado = [(clave, min(valores), max(valores)) for clave, valores in dicc.items()]
+    resultado.sort()
+
+    return resultado
+
+print("La solución es:")
+print(pregunta_06())

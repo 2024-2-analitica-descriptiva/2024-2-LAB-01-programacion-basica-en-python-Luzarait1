@@ -16,3 +16,22 @@ def pregunta_11():
 
 
     """
+
+    dicc = {}  
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t") 
+            valor_columna_2 = int(columnas[1])  
+            letras_columna_4 = columnas[3].split(",") 
+
+            for letra in letras_columna_4:
+                if letra in dicc:
+                    dicc[letra] += valor_columna_2
+                else:
+                    dicc[letra] = valor_columna_2
+
+    resultado_ordenado = dict(sorted(dicc.items()))
+    return resultado_ordenado
+
+print("La solución es:")
+print(pregunta_11())

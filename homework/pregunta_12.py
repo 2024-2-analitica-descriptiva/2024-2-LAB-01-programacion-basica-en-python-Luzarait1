@@ -15,3 +15,22 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+
+    dicc = {} 
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")
+            clave = columnas[0] 
+            valores_texto = columnas[4]  
+            
+            suma_valores = sum(int(valor.split(":")[1]) for valor in valores_texto.split(","))
+
+            if clave in dicc:
+                dicc[clave] += suma_valores
+            else:
+                dicc[clave] = suma_valores  
+    
+    return dicc
+
+print("La solución es:")
+print(pregunta_12())

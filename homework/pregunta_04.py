@@ -26,3 +26,23 @@ def pregunta_04():
      ('12', 3)]
 
     """
+
+    meses = {}
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            #se dividen las columnas por las tabulaciones
+            columnas = linea.strip().split("\t")
+
+            fecha = columnas[2]  
+            mes = fecha.split("-")[1]  
+
+            if mes in meses:
+                meses[mes] += 1
+            else:
+                meses[mes] = 1
+    
+    solucion = sorted(meses.items())
+    return solucion
+
+print("La solución es:")
+print(pregunta_04())

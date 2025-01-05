@@ -24,3 +24,22 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+
+    dicc = {} 
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")
+            columna5 = columnas[4] 
+            
+            pares = columna5.split(",") 
+            for par in pares:
+                clave, _ = par.split(":") 
+                if clave in dicc:
+                    dicc[clave] += 1
+                else:
+                    dicc[clave] = 1
+
+    return dict(sorted(dicc.items()))
+
+print("La solución es:")
+print(pregunta_09())

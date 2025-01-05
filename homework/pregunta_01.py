@@ -12,5 +12,16 @@ def pregunta_01():
 
     Rta/
     214
-
     """
+    suma = 0
+
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            #se dividen las columnas por las tabulaciones
+            columnas = linea.strip().split("\t")  
+            suma += int(columnas[1]) 
+    
+    return suma
+
+print("La suma de la segunda columna es")
+print(pregunta_01())

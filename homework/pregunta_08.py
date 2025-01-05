@@ -27,3 +27,27 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+
+    dicc = {}  
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")
+            
+            try:
+                valor_columna2 = int(columnas[1])  
+                letra_columna0 = columnas[0]  
+
+                if valor_columna2 in dicc:
+                    if letra_columna0 not in dicc[valor_columna2]:
+                        dicc[valor_columna2].append(letra_columna0)
+                else:
+                    dicc[valor_columna2] = [letra_columna0]  
+                
+            except (ValueError, IndexError) as e:
+                print(f"Advertencia: línea no válida -> {linea.strip()}")
+
+    resultado = sorted((clave, sorted(set(valor))) for clave, valor in dicc.items())
+    return resultado
+
+print("La solución es:")
+print(pregunta_08())

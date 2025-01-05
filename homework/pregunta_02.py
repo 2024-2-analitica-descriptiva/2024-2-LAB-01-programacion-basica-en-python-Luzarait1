@@ -15,3 +15,22 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    dicc = {}
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            #se dividen las columnas por las tabulaciones
+            columnas = linea.strip().split("\t")  
+            letra = columnas[0]
+
+            if letra in dicc:
+                dicc[letra] += 1
+            else:
+                dicc[letra] = 1
+
+        solucion = sorted(dicc.items())
+    
+    return solucion
+
+print("La solucion es")
+print(pregunta_02())
+

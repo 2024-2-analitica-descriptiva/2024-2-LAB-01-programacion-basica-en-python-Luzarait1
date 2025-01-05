@@ -15,3 +15,26 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    dicc = {}
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            #se dividen las columnas por las tabulaciones
+            columnas = linea.strip().split("\t")
+            val = int(columnas[1])
+            letra = columnas[0]
+
+            if letra in dicc:
+                dicc[letra].append(val)
+                dicc[letra].append(val)
+            else:
+                dicc[letra] = [val]
+
+    solucion = []
+    for letra, valores in sorted(dicc.items()):  
+        maximo = max(valores)  
+        minimo = min(valores)  
+        solucion.append((letra, maximo, minimo))  
+    return solucion
+
+print("La solucion es")
+print(pregunta_05())

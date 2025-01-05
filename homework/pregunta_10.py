@@ -20,3 +20,21 @@ def pregunta_10():
 
 
     """
+
+    lista = [] 
+    with open("files\\input\\data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t") 
+            letra_columna_1 = columnas[0] 
+            columna_4 = columnas[3]  
+            columna_5 = columnas[4] 
+
+            cantidad_columna_4 = len(columna_4.split(","))
+            cantidad_columna_5 = len(columna_5.split(","))
+
+            lista.append((letra_columna_1, cantidad_columna_4, cantidad_columna_5))
+
+    return lista
+
+print("La solución es:")
+print(pregunta_10())
