@@ -26,27 +26,19 @@ def pregunta_07():
 
     """
 
-    asociaciones = {} 
-    with open("files\\input\\data.csv", "r") as archivo:
+    dicc = {}
+    
+    with open("files/input/data.csv", "r", encoding="utf-8") as archivo:
         for linea in archivo:
             columnas = linea.strip().split("\t")
+            letra_columna1 = columnas[0]
+            valor_columna2 = int(columnas[1])  
             
-            if len(columnas) >= 3:
-                try:
-                    valor_columna2 = int(columnas[2]) 
-                    letra_columna1 = columnas[0]   
-
-                    if valor_columna2 in asociaciones:
-                        asociaciones[valor_columna2].append(letra_columna1)
-                    else:
-                        asociaciones[valor_columna2] = [letra_columna1]
-                except ValueError:
-                    print(f"Advertencia: no se pudo procesar la línea -> {linea.strip()}")
+            if valor_columna2 in dicc:
+                dicc[valor_columna2].append(letra_columna1)
             else:
-                print(f"Advertencia: línea incompleta o no válida -> {linea.strip()}")
+                dicc[valor_columna2] = [letra_columna1]
 
-    resultado = sorted(asociaciones.items())
-    return resultado
+    return sorted(dicc.items())
 
-print("La solución es:")
 print(pregunta_07())
