@@ -25,20 +25,23 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
-
-    dicc = {}
+    file = 'files/input/data.csv'
+    with open(file, mode='r', newline='', encoding='utf-8') as file:
+        lines = file.readlines()
     
-    with open("files/input/data.csv", "r", encoding="utf-8") as archivo:
-        for linea in archivo:
-            columnas = linea.strip().split("\t")
-            letra_columna1 = columnas[0]
-            valor_columna2 = int(columnas[1])  
-            
-            if valor_columna2 in dicc:
-                dicc[valor_columna2].append(letra_columna1)
-            else:
-                dicc[valor_columna2] = [letra_columna1]
-
-    return sorted(dicc.items())
+    letras = []
+    num = {}
+    for line in lines:
+        columns = line.strip().split('\t')
+        if len(columns) > 0:
+            letras.append((columns[0],int(columns[1]))) 
+    
+    for letra, valor in letras:
+        if valor not in num: 
+            num[valor] = [letra]
+        else: 
+            num[valor].append(letra)
+        
+    return sorted(num.items())
 
 print(pregunta_07())
