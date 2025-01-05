@@ -28,7 +28,7 @@ def pregunta_04():
     """
 
     meses = {}
-    with open("files\\input\\data.csv", "r") as archivo:
+    with open("files/input/data.csv", "r") as archivo:
         for linea in archivo:
             #se dividen las columnas por las tabulaciones
             columnas = linea.strip().split("\t")

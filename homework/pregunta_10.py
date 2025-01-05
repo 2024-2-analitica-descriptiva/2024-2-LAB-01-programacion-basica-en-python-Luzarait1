@@ -22,7 +22,7 @@ def pregunta_10():
     """
 
     lista = [] 
-    with open("files\\input\\data.csv", "r") as archivo:
+    with open("files/input/data.csv", "r") as archivo:
         for linea in archivo:
             columnas = linea.strip().split("\t") 
             letra_columna_1 = columnas[0] 
